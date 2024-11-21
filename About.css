@@ -1,21 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  animation: slideBackground 20s infinite;
   font-family: 'Poppins', sans-serif;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
   color: #f5f5f5;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: 76px; /* Add padding to body to account for fixed navbar */
+  padding-top: 76px;
+  position: relative;
+  z-index: 1;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: slideBackground 20s infinite;
 }
 
 @keyframes slideBackground {
-  0% { background-image: url('1.jpg'); }
-  33% { background-image: url('2.avif'); }
-  66% { background-image: url('3.avif'); }
-  100% { background-image: url('4.avif'); }
+  0% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('1.jpg'); }
+  33% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('2.avif'); }
+  66% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('3.avif'); }
+  100% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('4.avif'); }
+}
+
+body {
+  animation: slideBackground 20s infinite;
 }
 
 /* Header and Navigation Styles */
@@ -47,7 +68,9 @@ header {
 }
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 0, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-color: yellow;
+  border: 2px solid yellow;
+  border-radius: 5px;
 }
 
 .custom-navbar .nav-link:hover {
@@ -92,11 +115,11 @@ header {
 
 /* Main content styles */
 .content {
-  padding: 40px 20px; /* Increased top padding to create space between navbar and content */
+  padding: 40px 20px;
   max-width: 900px;
-  margin: 0 auto; /* Center the content */
+  margin: 20px auto 0; /* Added top margin for gap */
   color: #343a40;
-  background-color: rgba(255, 255, 255, 0.9); /* Add a semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   flex-grow: 1;
@@ -108,7 +131,7 @@ header {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 2.5rem;
-  margin: 0 auto 20px; /* Adjust margin */
+  margin: 0 auto 20px;
   padding: 20px;
   background: linear-gradient(90deg, #003366, #00aaff);
   border-radius: 10px;
@@ -167,7 +190,7 @@ header {
   color: #fff;
   padding: 40px 0;
   border-radius: 10px 10px 0 0;
-  margin-top: auto; /* Push footer to the bottom */
+  margin-top: auto;
 }
 
 .footer h4 {
@@ -278,39 +301,64 @@ header {
 /* Media query for mobile devices */
 @media (max-width: 768px) {
   body {
-    padding-top: 60px; /* Adjust padding for mobile */
+      padding-top: 60px;
+      background-attachment: scroll;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+  }
+
+  body::before {
+    /* background-attachment:scroll ; */
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      animation: slideBackground 20s infinite;
+      background-size: cover;
+      background-position: center center;
+  }
+
+  @keyframes slideBackground {
+      0% { background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('1.jpg'); }
+      33% { background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('2.avif'); }
+      66% { background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('3.avif'); }
+      100% { background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('4.avif'); }
   }
 
   .content {
-    padding-top: 20px; /* Reduce padding on mobile */
+      padding-top: 20px;
+      margin-top: 15px; /* Reduced top margin for mobile */
   }
 
   .section-title {
-    font-size: 24px; /* Reduce font size on mobile */
-    margin-bottom: 15px;
+      font-size: 24px;
+      margin-bottom: 15px;
   }
 
   .section-box {
-    margin-left: 15px;
-    margin-right: 15px;
+      margin-left: 15px;
+      margin-right: 15px;
   }
 
   #main-title {
-    font-size: 1.2rem;
+      font-size: 1.2rem;
   }
 
   .footer-content {
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
+      align-items: center;
   }
 
   .footer-content > div {
-    width: 100%;
-    margin-bottom: 20px;
+      width: 100%;
+      margin-bottom: 20px;
   }
 
   .footer-bottom {
-    text-align: center;
+      text-align: center;
   }
 }
-
